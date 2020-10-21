@@ -24,11 +24,105 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Vila Market</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id='root'></div>
+
+    <!-- HEADER -->
+
+    <div class="navbar navbar-dark bg-dark shadow-sm" id = header>
+      <div class="container d-flex justify-content-between">
+        <div class="navbar-brand d-flex align-items-center">
+          <strong>Vila Market</strong>
+        </div>
+        <!-- data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" aqui embaixo-->
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ADVERTISE -->
+
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+      <div class="col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 font-weight-normal">Anuncie já</h1>
+        <p class="lead font-weight-normal">asoidubaosiudasiudb</p>
+        <div id="advertiseForm">Comece agora</div>
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+
+    <div class="iza-container container" id="search">
+      <div class="container container-categories-stripe mt-5 mb-4 category-section-margin-bottom">
+          <div class="row">
+              <div class="col-12 px-0 px-md-4">
+                  <ul class="list-unstyled mb-0 list-inline category-stripe pb-3 category-stripe-margin-bottom">
+                      <li class="list-inline-item">
+                          <div class="btn btn-outline-secondary" name="foodSearch">
+                              <span class="icon-background">
+                                  <img src="food.png" style="width:64px;height:64px;" alt="">
+                              </span>
+                              <small>Comida</small>
+                          </div>
+                      </li>
+                      <li class="list-inline-item">
+                          <div class="btn btn-outline-secondary" name="serviceSearch">
+                              <span class="icon-background">
+                                  <img src="service.png" style="width:64px;height:64px;" alt="">
+                              </span>
+                              <small>Serviços</small>
+                          </div>
+                      </li>
+                      <li class="list-inline-item">
+                          <div class="btn btn-outline-secondary" name="blablaSearch">
+                              <span class="icon-background">
+                                  <img src="images/blabla.png" style="width:64px;height:64px;" alt="">
+                              </span>
+                              <small>BlaBla</small>
+                          </div>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+      <div class="my-3 p-3 bg-white rounded shadow-sm" id="searchList"></div>
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
+          <small class="d-block mb-3 text-muted">&copy; 2017-2020</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" >Business</a></li>
+            <li><a class="text-muted" >Education</a></li>
+            <li><a class="text-muted" >Government</a></li>
+            <li><a class="text-muted" >Gaming</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" >Team</a></li>
+            <li><a class="text-muted" >Locations</a></li>
+            <li><a class="text-muted" >Privacy</a></li>
+            <li><a class="text-muted" >Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
