@@ -30,10 +30,10 @@ class Item extends React.Component {
                 <div className="info_item">
                     <h3>{this.state.produto}</h3>
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-9 mb-3">
                             <p>{this.state.descricao_produto}</p>
                         </div>
-                        <h3 class="col-md-6 mb-3 price">
+                        <h3 class="col-md-3 mb-3 price">
                             <p>R$ {this.state.valor}</p>
                         </h3>
                     </div>
@@ -47,7 +47,6 @@ class Item extends React.Component {
                         </div>
                     </div>}
                 </div>
-                
             </div>
 
         );

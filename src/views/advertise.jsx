@@ -69,7 +69,11 @@ class AdvertiseForm extends React.Component {
                                 <select class="form-control" id="category" name="category" onChange={this.myChangeHandler} required>
                                     <option selected>Escolha...</option>
                                     <option value="food">Comida</option>
+                                    <option value="house">Para sua Casa</option>
+                                    <option value="electronics">Eletrônicos</option>
                                     <option value="service">Serviço</option>
+                                    <option value="sports">Esporte e Lazer</option>
+                                    <option value="dressing">Moda e Beleza</option>
                                 </select>
                             </div>
                         </div>
@@ -127,7 +131,7 @@ class AdvertiseForm extends React.Component {
                             </div>
                         </div>
                 
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar Cadastro de Produto</button>
+                        <button class="btn btn-success btn-lg btn-block bg-success" type="submit">Finalizar Cadastro de Produto</button>
                     </form>
                 </div>}
             </div>

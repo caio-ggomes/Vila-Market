@@ -21,7 +21,7 @@ class Search extends Component {
                     "descricao_produto": "Filé a parmegiana, arroz e feijão tropeiro",
                     "valor":"10.25",
                     "vendedor":"Joao",
-                    "telefone":"8176654422",
+                    "telefone":"(81)7665-4422",
                 },
                 {
                     "id": 2,
@@ -30,9 +30,14 @@ class Search extends Component {
                     "descricao_produto": "Hamburguer 180g com queijo cheddar e farofa de bacon",
                     "valor":"15.00",
                     "vendedor":"Mauricio",
-                    "telefone":"8176654422",
+                    "telefone":"(81)7665-4422",
                 }
-            ]
+            ];
+
+        this.listHouse = [];
+
+        this.listElectronics = [];
+
         this.listService = [
                 {
                     "id": 1,
@@ -41,7 +46,7 @@ class Search extends Component {
                     "descricao_produto": "Problemas de Vazamento",
                     "valor":"33.33",
                     "vendedor":"Joao",
-                    "telefone":"8176654422",
+                    "telefone":"(81)7665-4422",
                 },
                 {
                     "id": 2,
@@ -50,9 +55,13 @@ class Search extends Component {
                     "descricao_produto": "Lubrificação e troca de correias, troca de pneus",
                     "valor":"33.33",
                     "vendedor":"Joao",
-                    "telefone":"8176654422",
+                    "telefone":"(81)7665-4422",
                 }
-        ]
+        ];
+
+        this.listSports = [];
+
+        this.listDressing = [];
         
         this.handleClick = this.handleClick.bind(this);
         
@@ -72,7 +81,11 @@ class Search extends Component {
     renderRows(list){
         return list.map(item =>{
             return (
+                <div>
+                    <div className="item-separator"></div>
                     < Item url={item.url} produto={item.produto} valor={item.valor} vendedor={item.vendedor} telefone={item.telefone} descricao_produto={item.descricao_produto}/>
+                    <div className="item-separator"></div>
+                </div>
             )
         })
     }
@@ -85,7 +98,11 @@ class Search extends Component {
                         <div className="col-12 px-0 px-md-4">
                             <ul className="list-unstyled mb-0 list-inline category-stripe pb-3 category-stripe-margin-bottom">                                
                                 < Categoria tipo="food" nome="Comida" url="images/food.png" click={this.handleClick} a href="#teste"/>
-                                < Categoria tipo="service" nome="Serviços" url="images/service.png" click={this.handleClick}/>                            
+                                < Categoria tipo="house" nome="Para a sua Casa" url="images/home.png" click={this.handleClick}/>  
+                                < Categoria tipo="electronics" nome="Eletrônicos" url="images/electronics.png" click={this.handleClick}/>  
+                                < Categoria tipo="service" nome="Serviços" url="images/service.png" click={this.handleClick}/>  
+                                < Categoria tipo="sports" nome="Esporte e Lazer" url="images/sports.png" click={this.handleClick}/>  
+                                < Categoria tipo="dressing" nome="Moda e Beleza" url="images/dressing.png" click={this.handleClick}/>                            
                             </ul>
                         </div>
                     </div>
@@ -93,12 +110,28 @@ class Search extends Component {
                
 
                 {this.state.option === 'food' && 
-                    <div className="my-3 p-3 bg-white rounded shadow-sm">
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.listFood)}
                     </div>}
+                {this.state.option === 'house' && 
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
+                        {this.renderRows(this.listHouse)}
+                    </div>}
+                {this.state.option === 'electronics' && 
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
+                        {this.renderRows(this.listElectronics)}
+                    </div>}
                 {this.state.option === 'service' && 
-                    <div className="my-3 p-3 bg-white rounded shadow-sm">
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.listService)}
+                    </div>}
+                {this.state.option === 'sports' && 
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
+                        {this.renderRows(this.listSports)}
+                    </div>}
+                {this.state.option === 'dressing' && 
+                    <div className="my-3 p-3 bg-light rounded shadow-sm">
+                        {this.renderRows(this.listDressing)}
                     </div>}
                 
 

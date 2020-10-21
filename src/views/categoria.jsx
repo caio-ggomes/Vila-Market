@@ -6,6 +6,6 @@ export default props =>
             <span className="icon-background">
                 <img src={props.url} alt=""/>
             </span>
-            <small>{props.nome}</small>
+            <small> &nbsp; {props.nome}</small>
         </div>
     </li>
