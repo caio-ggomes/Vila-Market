@@ -82,23 +82,23 @@ class Search extends Component {
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[1])}
                     </div>}
-                {this.state.option === 'house' && 
+                {this.state.option === '2' && 
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[2])}
                     </div>}
-                {this.state.option === 'electronics' && 
+                {this.state.option === '3' && 
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[3])}
                     </div>}
-                {this.state.option === 'service' && 
+                {this.state.option === '4' && 
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[4])}
                     </div>}
-                {this.state.option === 'sports' && 
+                {this.state.option === '5' && 
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[5])}
                     </div>}
-                {this.state.option === 'dressing' && 
+                {this.state.option === '6' && 
                     <div className="my-3 p-3 bg-light rounded shadow-sm">
                         {this.renderRows(this.list[6])}
                     </div>}
