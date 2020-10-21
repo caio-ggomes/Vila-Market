@@ -52,7 +52,7 @@ class Search extends Component {
             return (
                 <div>
                     <div className="item-separator"></div>
-                    < Item url={item.imageUrl} name={item.name} preco={item.preco} anunciante={item.anunciante} telefone={item.telefone} description={item.description}/>
+                    < Item imageUrl={item.imageUrl} name={item.name} preco={item.preco} anunciante={item.anunciante} telefone={item.telefone} description={item.description}/>
                     <div className="item-separator"></div>
                 </div>
             )

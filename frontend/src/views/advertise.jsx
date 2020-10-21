@@ -39,7 +39,8 @@ class AdvertiseForm extends React.Component {
                 "telefone": event.target.phone_number.value,
                 "categoryId": parseInt(event.target.category.value),
                 "anunciante": event.target.username.value,
-                "preco": event.target.price.value
+                "preco": event.target.price.value,
+                "imageUrl": event.target.imageUrl.value
                 }
             
         
@@ -137,15 +138,10 @@ class AdvertiseForm extends React.Component {
 
                         <div class="row">
                             <div class="col-md-12 mb-3">
-                                <label for="product_photo">Foto do Produto (Opcional)</label>
-                                <div class="input-group">
-                                    <ImageUploader
-                                        withIcon={true}
-                                        buttonText='Escolher Foto'
-                                        onChange={this.onDrop}
-                                        imgExtension={['.jpg', '.gif', '.png', '.gif']}
-                                        maxFileSize={5242880}
-                                    />
+                                <label for="imageUrl">Url da Imagem</label>
+                                <input type="text" class="form-control" id="imageUrl" name="imageUrl" onChange={this.myChangeHandler} placeholder="Url" required/>
+                                <div class="invalid-feedback">
+                                Url inválido.
                                 </div>
                             </div>
                         </div>
