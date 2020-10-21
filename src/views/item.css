@@ -13,6 +13,11 @@
     
 }
 
+.price {
+    text-align: right;
+    padding-right: 40px;
+}
+
 .info_item{
     grid-column: span 3;
 }

@@ -18,17 +18,19 @@ class Search extends Component {
                     "id": 1,
                     "url":"https://marmitexdesucesso.com/wp-content/uploads/2019/10/como-montar-uma-quentinha-para-vender-1200x900.jpg",
                     "produto":"Quentinha",
+                    "descricao_produto": "Filé a parmegiana, arroz e feijão tropeiro",
                     "valor":"10.25",
                     "vendedor":"Joao",
-                    "telefone":"8176654422"
+                    "telefone":"8176654422",
                 },
                 {
                     "id": 2,
                     "url":"https://conteudo.imguol.com.br/c/entretenimento/9d/2020/05/26/hamburguer-recheado-na-churrasqueira-1590524861807_v2_450x337.jpg",
                     "produto":"Hamburguer",
+                    "descricao_produto": "Hamburguer 180g com queijo cheddar e farofa de bacon",
                     "valor":"15.00",
                     "vendedor":"Mauricio",
-                    "telefone":"8176654422"
+                    "telefone":"8176654422",
                 }
             ]
         this.listService = [
@@ -36,17 +38,19 @@ class Search extends Component {
                     "id": 1,
                     "url":"https://consul.vteximg.com.br/arquivos/ids/192704-1000-1000/Consul_Geladeira_CRE44AK_Imagem_3_4_1.jpg?v=636971578596230000",
                     "produto":"Conserto de Geladeira",
+                    "descricao_produto": "Problemas de Vazamento",
                     "valor":"33.33",
                     "vendedor":"Joao",
-                    "telefone":"8176654422"
+                    "telefone":"8176654422",
                 },
                 {
                     "id": 2,
                     "url":"https://a-static.mlcdn.com.br/618x463/bicicleta-aro-24-wendy-fem-18m-convencional-pink/shopbikemulticoisas/3401789890/d0123b2d9ed4658957c4f74e4af0f40b.jpg",
                     "produto":"Conserto de Bicicleta",
+                    "descricao_produto": "Lubrificação e troca de correias, troca de pneus",
                     "valor":"33.33",
                     "vendedor":"Joao",
-                    "telefone":"8176654422"
+                    "telefone":"8176654422",
                 }
         ]
         
@@ -58,7 +62,7 @@ class Search extends Component {
     handleClick(event) {
         if (this.state.option === event ){
             console.log("trocou")
-            this.state.option = '';
+            this.setState({option: ''});
         }
         
         else
@@ -68,7 +72,7 @@ class Search extends Component {
     renderRows(list){
         return list.map(item =>{
             return (
-                    < Item url={item.url} produto={item.produto} valor={item.valor} vendedor={item.vendedor} telefone={item.telefone}/>
+                    < Item url={item.url} produto={item.produto} valor={item.valor} vendedor={item.vendedor} telefone={item.telefone} descricao_produto={item.descricao_produto}/>
             )
         })
     }
@@ -88,11 +92,11 @@ class Search extends Component {
                 </div>                              
                
 
-                {this.state.option == 'food' && 
+                {this.state.option === 'food' && 
                     <div className="my-3 p-3 bg-white rounded shadow-sm">
                         {this.renderRows(this.listFood)}
                     </div>}
-                {this.state.option == 'service' && 
+                {this.state.option === 'service' && 
                     <div className="my-3 p-3 bg-white rounded shadow-sm">
                         {this.renderRows(this.listService)}
                     </div>}
