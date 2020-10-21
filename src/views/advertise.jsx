@@ -57,12 +57,20 @@ class AdvertiseForm extends React.Component {
                     <h4 class="mb-3">Cadastro de Produto</h4>
                     <form class="needs-validation" novalidate onSubmit={this.mySubmitHandler}>
                         <div class="row">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-8 mb-3">
                                 <label for="product">Produto</label>
                                 <input type="text" class="form-control" id="product" name="product" onChange={this.myChangeHandler} placeholder="Nome do Produto" required/>
                                 <div class="invalid-feedback">
                                 Nome de produto inválido.
                                 </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="category">Categoria</label>
+                                <select class="form-control" id="category" name="category" onChange={this.myChangeHandler} required>
+                                    <option selected>Escolha...</option>
+                                    <option value="food">Comida</option>
+                                    <option value="service">Serviço</option>
+                                </select>
                             </div>
                         </div>
 
