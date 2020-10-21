@@ -20,7 +20,7 @@ module.exports = app => {
         .put(app.api.category.save)
     
     app.route('/announcements')
-        .post(app.config.passport.authenticate())
+        //.post(app.config.passport.authenticate())
         .get(app.api.announcement.get)
         .post(app.api.announcement.save)
 

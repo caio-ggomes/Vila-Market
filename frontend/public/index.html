@@ -2,19 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/images/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!-- <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/logo192.png" /> -->
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
+    <!--
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    -->
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -34,8 +36,8 @@
 
     <!-- HEADER -->
 
-    <div class="navbar navbar-dark bg-dark shadow-sm" id = header>
-      <div class="container d-flex justify-content-between">
+  <nav class="navbar navbar-dark bg-dark shadow-sm fixed-top" id="header">
+      <div class="container d-flex justify-content-between"> 
         <div class="navbar-brand d-flex align-items-center">
           <strong>Vila Market</strong>
         </div>
@@ -44,58 +46,24 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-    </div>
+    </nav>
 
     <!-- ADVERTISE -->
 
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
       <div class="col-md-5 p-lg-5 mx-auto my-5">
         <h1 class="display-4 font-weight-normal">Anuncie já</h1>
-        <p class="lead font-weight-normal">asoidubaosiudasiudb</p>
+        <!--<p class="lead font-weight-normal">asoidubaosiudasiudb</p>-->
         <div id="advertiseForm">Comece agora</div>
       </div>
     </div>
 
     <!-- SEARCH -->
 
-    <div class="iza-container container" id="search">
-      <div class="container container-categories-stripe mt-5 mb-4 category-section-margin-bottom">
-          <div class="row">
-              <div class="col-12 px-0 px-md-4">
-                  <ul class="list-unstyled mb-0 list-inline category-stripe pb-3 category-stripe-margin-bottom">
-                      <li class="list-inline-item">
-                          <div class="btn btn-outline-secondary" name="foodSearch">
-                              <span class="icon-background">
-                                  <img src="food.png" style="width:64px;height:64px;" alt="">
-                              </span>
-                              <small>Comida</small>
-                          </div>
-                      </li>
-                      <li class="list-inline-item">
-                          <div class="btn btn-outline-secondary" name="serviceSearch">
-                              <span class="icon-background">
-                                  <img src="service.png" style="width:64px;height:64px;" alt="">
-                              </span>
-                              <small>Serviços</small>
-                          </div>
-                      </li>
-                      <li class="list-inline-item">
-                          <div class="btn btn-outline-secondary" name="blablaSearch">
-                              <span class="icon-background">
-                                  <img src="images/blabla.png" style="width:64px;height:64px;" alt="">
-                              </span>
-                              <small>BlaBla</small>
-                          </div>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-      <div class="my-3 p-3 bg-white rounded shadow-sm" id="searchList"></div>
-    </div>
+    <div class="iza-container container" id="search"></div>
 
     <!-- FOOTER -->
-
+    <!-- 
     <footer class="container py-5">
       <div class="row">
         <div class="col-12 col-md">
@@ -122,7 +90,7 @@
         </div>
       </div>
     </footer>
-
+    -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

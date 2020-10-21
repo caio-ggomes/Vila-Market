@@ -1,0 +1,26 @@
+.item {
+    border-radius: 15px;
+    border-width: 3px;
+    border-color: whitesmoke;
+    height: 100%;
+    display:grid;
+    grid-template-columns: repeat(4,25%);
+    align-items: center;
+    padding: 5px;
+}
+.image_item{
+    
+    height: 190px;
+    width: 190px;
+    border-radius: 10%;
+    
+}
+
+.price {
+    text-align: right;
+    padding-right: 40px;
+}
+
+.info_item{
+    grid-column: span 3;
+}
