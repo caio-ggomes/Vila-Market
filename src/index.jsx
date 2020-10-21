@@ -1,17 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import AdvertiseForm from './advertise';
-import Search from './search';
+import AdvertiseForm from './views/advertise';
+import Search from './views/search';
 import * as serviceWorker from './serviceWorker';
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,7 +17,7 @@ ReactDOM.render(
     <Search />
   </React.StrictMode>,
   document.getElementById('search')
-)
+) 
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

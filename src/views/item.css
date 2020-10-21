@@ -1,0 +1,18 @@
+.item {
+    border-radius: 5px;
+    height: 200px;
+    display:grid;
+    grid-template-columns: repeat(4,25%);
+    align-items: center;
+    padding: 5px;
+}
+.image_item{
+    
+    height: 190px;
+    width: 190px;
+    
+}
+
+.info_item{
+    grid-column: span 3;
+}
