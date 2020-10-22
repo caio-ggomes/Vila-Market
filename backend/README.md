@@ -1,6 +1,7 @@
 # Backend da Aplicação
 
 Versão do NodeJs utilizada: v14.13.0
+
 Porta: 4000
 
 Para rodar o backend é necessário instalar o postgres 13.
