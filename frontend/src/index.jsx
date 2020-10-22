@@ -8,16 +8,11 @@ import * as serviceWorker from './serviceWorker';
 ReactDOM.render(
   <React.StrictMode>
     <AdvertiseForm />
-  </React.StrictMode>,
-  document.getElementById('advertiseForm')
-)
-
-ReactDOM.render(
-  <React.StrictMode>
     <Search />
   </React.StrictMode>,
-  document.getElementById('search')
-) 
+  document.getElementById('root')
+
+)
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
