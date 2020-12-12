@@ -3,9 +3,12 @@ import axios from 'axios';
 import ImageUploader from 'react-images-upload';
 import './advertise.css';
 import { baseApiUrl } from '../global'
-import Search from './search'
+
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import Geocode from "react-geocode"
+
+
 
 class AdvertiseForm extends React.Component {
     constructor(props) {
@@ -18,13 +21,59 @@ class AdvertiseForm extends React.Component {
             price: 0.0,
             phone_number: '',
             product_photo: [],
+            number: '',
+            cep: '',
+            city: '',
+            uf:'',
+            neighborhood: '',
+            street:'',
+            
+
         };
         this.state = this.stateInicial;
+        this.rua=''
+        this.cidade=''
+        this.number=''
+        this.estado=''
+        this.endereco = ''
         this.showForm = this.showForm.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.myChangeHandler = this.myChangeHandler.bind(this);
         this.mySubmitHandler = this.mySubmitHandler.bind(this);
+        this.onBlurCep =this.onBlurCep.bind(this);
+        Geocode.setApiKey('1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com');
+        
     }
+
+    onBlurCep(event) {
+        const { value } = event.target;
+    
+        const cep = value?.replace(/[^0-9]/g, '');
+        
+        if (cep?.length !== 8) {
+          return;
+        }
+        this.setState({'cep': cep});
+        fetch(`https://viacep.com.br/ws/${cep}/json/`)
+          .then((res) => res.json())
+          .then((data) => {
+            this.rua = data.logradouro
+            this.estado = data.uf
+            
+            this.bairro = data.bairro
+            this.cidade = data.localidade
+            
+            this.setState({'street': data.logradouro});
+            this.setState({'neighborhood': data.bairro});
+            this.setState({'city': data.localidade});
+            this.setState({'uf': data.uf});
+          });
+          
+
+
+      }
+
+    
 
     showForm() {
         this.setState({ visible: !this.state.visible });
@@ -36,6 +85,23 @@ class AdvertiseForm extends React.Component {
 
     mySubmitHandler(event) {
         event.preventDefault();
+        this.endereco = this.state.number +' ' +this.state.street + ',' + this.state.neighborhood + ', '+ this.state.city + ', '+this.state.uf
+        console.log(this.endereco)
+        /*
+        Geocode.fromAddress("Eiffel Tower").then(
+            response => {
+              const { lat, lng } = response.results[0].geometry.location;
+              console.log(lat);
+              console.log(response.results[0].geometry.location);
+              this.setState({latitude: lat, longitude: lng})
+            },
+            error => {
+              console.error(error);
+            },
+            console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
+          );*/
+
+
         const data = {
             "name": this.state.product,
             "description": this.state.product_description,
@@ -43,9 +109,12 @@ class AdvertiseForm extends React.Component {
             "categoryId": parseInt(this.state.category),
             "anunciante": this.state.username,
             "preco": this.state.price,
-            "imageUrl": this.state.imageUrl
+            "imageUrl": this.state.imageUrl,
+            "latitude": parseFloat(this.state.latitude),
+            "longitude": parseFloat(this.state.longitude)
         }
-
+        console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
+        console.log(data)
         axios.post(`${baseApiUrl}/announcements`, data)
             .then(response => console.log(response))
             .catch((err) => console.log(err))
@@ -73,18 +142,18 @@ class AdvertiseForm extends React.Component {
                         {this.state.visible &&
                             <div>
                                 <h4 class="mb-3">Cadastro de Produto</h4>
-                                <form class="needs-validation" novalidate onSubmit={this.mySubmitHandler} autoComplete = "off">
-                                    <div>
+                                <form class="needs-validation"  onSubmit={this.mySubmitHandler} autoComplete = "off">
+                                    
                                     <div class="row">
                                         <div class="col-md-8 mb-3">
-                                            <label for="product">Produto</label>
+                                            <label htmlFor="product">Produto</label>
                                             <input type="text" class="form-control" id="product" name="product" onChange={this.myChangeHandler} placeholder="Nome do Produto" required />
                                             <div class="invalid-feedback">
                                                 Nome de produto inválido.
                                     </div>
                                         </div>
                                         <div class="col-md-4 mb-3">
-                                            <label for="category">Categoria</label>
+                                            <label htmlFor="category">Categoria</label>
                                             <select class="form-control" id="category" name="category" onChange={this.myChangeHandler} required>
                                                 <option selected>Escolha...</option>
                                                 <option value="1">Comida</option>
@@ -99,7 +168,7 @@ class AdvertiseForm extends React.Component {
 
                                     <div class="row">
                                             <div class="col-md-12 mb-3">
-                                                <label for="price">Preço</label>
+                                                <label htmlFor="price">Preço</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text" id="basic-addon1">R$</span>
                                                     
@@ -113,7 +182,7 @@ class AdvertiseForm extends React.Component {
 
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="username">Seu Nome</label>
+                                            <label htmlFor="username">Seu Nome</label>
                                             <input type="text" class="form-control" id="username" name="username" onChange={this.myChangeHandler} placeholder="Fulano da Silva" required />
                                             <div class="invalid-feedback">
                                                 Nome de usuário inválido.
@@ -124,25 +193,61 @@ class AdvertiseForm extends React.Component {
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="telefone">Telefone</label>
+                                            <label htmlFor="phone_number">Telefone</label>
                                             <PhoneInput containerStyle={{marginLeft:'60px'}}
                                             country={'br'}
-                                            labels="Telefone"
-                                            value={this.state.phone_number}
-                                            id="telefone"
-                                            onChange={telefone => this.setState({telefone})}
+                                            
+                                            
+                                            id="phone_number"
+                                            onChange={phone_number => this.setState({phone_number})}
                                             required/>
                                             
                                             <div class="invalid-feedback">
                                                 Por favor, escreva o seu número de telefone.
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                         
+                                        <label htmlFor="cep">CEP</label>
+                                        <input
+                                        class="form-control"
+                                        id="cep"
+                                        type="text"
+                                        onBlur={(ev) => this.onBlurCep(ev)}
+                                        required/>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                            <label for="number">Número</label>
+                                            <input  class="form-control"type="text" id="number" name="number" onChange={this.myChangeHandler} required />
+                                            
                                         </div>
-                                        
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label htmlFor="city">Cidade</label>
+                                        <input class="form-control" type="text" value={this.state.city} id="city" disabled />
+                                    </div> 
+                                    <div class="col-md-4 mb-3">
+                                        <label htmlFor="estado">Estado</label>
+                                        <input class="form-control" type="text" value={this.state.uf} id="uf" disabled />
+                                    </div> 
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-8 mb-3">
+                                        <label htmlFor="neighborhood">Bairro</label>
+                                        <input class="form-control" type="text" value={this.state.neighborhood} id="neighborhood" disabled />
+                                    </div> 
+                                    <div class="col-md-4 mb-3">
+                                        <label htmlFor="street">Rua</label>
+                                        <input class="form-control" type="text" value={this.state.street} id="street" disabled />
+                                    </div> 
+                                    </div>
                                     
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="product_description">Descrição do Produto</label>
+                                            <label htmlFor="product_description">Descrição do Produto</label>
                                             <textarea rows="4" class="form-control" id="product_description" name="product_description" onChange={this.myChangeHandler} placeholder="Digite aqui a descrição do produto a ser vendido." required>
                                             </textarea>
                                             <div class="invalid-feedback">
@@ -153,7 +258,7 @@ class AdvertiseForm extends React.Component {
 
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="imageUrl">Url da Imagem</label>
+                                            <label htmlFor="imageUrl">Url da Imagem</label>
                                             <input type="text" class="form-control" id="imageUrl" name="imageUrl" onChange={this.myChangeHandler} placeholder="Url" required />
                                             <div class="invalid-feedback">
                                                 Url inválido.
@@ -162,7 +267,7 @@ class AdvertiseForm extends React.Component {
                                     </div>
 
                                     <button class="btn btn-success btn-lg btn-block bg-success" type="submit">Finalizar Cadastro de Produto</button>
-                                    </div>
+                                    
                                 </form>
                             </div>}
                             

@@ -1,5 +1,6 @@
 import './item.css'
 import React from 'react';
+import MapContainer from './map'
 
 class Item extends React.Component {
     
@@ -51,6 +52,11 @@ class Item extends React.Component {
                         </div>
                         <div class="col-md-6 mb-3">
                             <p>Telefone: {this.state.telefone}</p>
+                        </div>
+                        <div class="row">
+                        <div>
+                            <MapContainer />
+                        </div>
                         </div>
                     </div>}
                 </div>
