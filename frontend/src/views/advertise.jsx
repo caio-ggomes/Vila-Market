@@ -4,6 +4,8 @@ import ImageUploader from 'react-images-upload';
 import './advertise.css';
 import { baseApiUrl } from '../global'
 import Search from './search'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 class AdvertiseForm extends React.Component {
     constructor(props) {
@@ -35,13 +37,13 @@ class AdvertiseForm extends React.Component {
     mySubmitHandler(event) {
         event.preventDefault();
         const data = {
-            "name": event.target.product.value,
-            "description": event.target.product_description.value,
-            "telefone": event.target.phone_number.value,
-            "categoryId": parseInt(event.target.category.value),
-            "anunciante": event.target.username.value,
-            "preco": event.target.price.value,
-            "imageUrl": event.target.imageUrl.value
+            "name": this.state.product,
+            "description": this.state.product_description,
+            "telefone": this.state.phone_number,
+            "categoryId": parseInt(this.state.category),
+            "anunciante": this.state.username,
+            "preco": this.state.price,
+            "imageUrl": this.state.imageUrl
         }
 
         axios.post(`${baseApiUrl}/announcements`, data)
@@ -71,7 +73,8 @@ class AdvertiseForm extends React.Component {
                         {this.state.visible &&
                             <div>
                                 <h4 class="mb-3">Cadastro de Produto</h4>
-                                <form class="needs-validation" novalidate onSubmit={this.mySubmitHandler}>
+                                <form class="needs-validation" novalidate onSubmit={this.mySubmitHandler} autoComplete = "off">
+                                    <div>
                                     <div class="row">
                                         <div class="col-md-8 mb-3">
                                             <label for="product">Produto</label>
@@ -95,35 +98,48 @@ class AdvertiseForm extends React.Component {
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-5 mb-3">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="price">Preço</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">R$</span>
+                                                    
+                                                    <input type="number" step="0.01" min="0" class="form-control currency" id="price" name="price" onChange={this.myChangeHandler} placeholder="0.00    " required />
+                                                    <div class="invalid-feedback">
+                                                        Valor inválido.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
                                             <label for="username">Seu Nome</label>
                                             <input type="text" class="form-control" id="username" name="username" onChange={this.myChangeHandler} placeholder="Fulano da Silva" required />
                                             <div class="invalid-feedback">
                                                 Nome de usuário inválido.
-                                    </div>
+                                            </div>
                                         </div>
-                                        <div class="col mb-3">
-                                            <label for="phone_number">Telefone</label>
-                                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="(12) 012345-6789" onChange={this.myChangeHandler} required />
-                                            <div class="invalid-feedback">
-                                                Por favor, escreva o seu número de telefone.
-                                    </div>
-                                        </div>
+                                        
 
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <label for="price">Preço</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon">R$ &nbsp;</span>
-                                                <input type="number" step="0.01" min="0" class="form-control currency" id="price" name="price" onChange={this.myChangeHandler} placeholder="0.00    " required />
-                                                <div class="invalid-feedback">
-                                                    Valor inválido.
-                                        </div>
+                                            <label for="telefone">Telefone</label>
+                                            <PhoneInput containerStyle={{marginLeft:'60px'}}
+                                            country={'br'}
+                                            labels="Telefone"
+                                            value={this.state.phone_number}
+                                            id="telefone"
+                                            onChange={telefone => this.setState({telefone})}
+                                            required/>
+                                            
+                                            <div class="invalid-feedback">
+                                                Por favor, escreva o seu número de telefone.
                                             </div>
                                         </div>
-                                    </div>
-
+                                        </div>
+                                        
+                                    
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
                                             <label for="product_description">Descrição do Produto</label>
@@ -146,8 +162,10 @@ class AdvertiseForm extends React.Component {
                                     </div>
 
                                     <button class="btn btn-success btn-lg btn-block bg-success" type="submit">Finalizar Cadastro de Produto</button>
+                                    </div>
                                 </form>
                             </div>}
+                            
                     </div>
                 </div>
             </div>

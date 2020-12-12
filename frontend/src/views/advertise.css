@@ -6,10 +6,27 @@ input.currency {
 
 .form-control {
     text-align: left;
-    padding-left: 15px;
+    padding-left: 10px;
 }
 
 .input-group .input-buttons {
     position: relative;
     z-index: 3;
+}
+
+.react-tel-input {
+	font-size: 0.9rem ;
+}
+
+.react-tel-input.form-control {
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+	height: 3.5rem ;
+	position: relative;
+	letter-spacing: .01rem;
+	border-radius: 0 ;
+	margin-top: 0 ;
+	margin-bottom: 0 ;
+	width: 10% ;
+	font-size: 0.9rem ;
 }
