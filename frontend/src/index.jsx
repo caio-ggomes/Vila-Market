@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import AdvertiseForm from './views/advertise';
-import Search from './views/search';
+import App from './main/App';
+/*import AdvertiseForm from './components/anuncios/advertise';
+import Search from './components/busca/search';
+import Login from './components/home/Login'*/
 import * as serviceWorker from './serviceWorker';
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <AdvertiseForm />
-    <Search />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 

@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import ImageUploader from 'react-images-upload';
 import './advertise.css';
-import { baseApiUrl } from '../global'
-import Search from './search'
+import { baseApiUrl } from '../../global'
+import Search from '../busca/search'
 
 class AdvertiseForm extends React.Component {
     constructor(props) {
