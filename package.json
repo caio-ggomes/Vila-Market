@@ -1,0 +1,13 @@
+{
+  "name": "vila-market",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "concurrently": "^3.5.0"
+  },
+  "scripts": {
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm start",
+    "start": "concurrently --kill-others-on-fail \"npm run backend\" \"npm run frontend\""
+  }
+}
