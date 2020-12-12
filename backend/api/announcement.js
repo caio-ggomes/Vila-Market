@@ -51,7 +51,10 @@ module.exports = app => {
         const limit = 10 // usado para paginação
         const get = async (req, res) => {
             app.db('announcements')
-            .then(announcements => res.json(announcements))
+            .then(announcements => {
+                res.json(announcements)
+                res.send({csrfToken: req.csrfToken()})
+            })
             .catch(err => res.status(500).send(err))
             
         }

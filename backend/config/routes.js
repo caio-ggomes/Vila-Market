@@ -1,4 +1,12 @@
+const csrf = require('csurf')
+const cookieParser = require('cookie-parser')
+
+const csrfProtection = csrf({ cookie: true });
+
 module.exports = app => {
+
+    app.use(cookieParser());
+
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
     app.post('/validateToken', app.api.auth.validateToken)
@@ -21,8 +29,8 @@ module.exports = app => {
     
     app.route('/announcements')
         //.post(app.config.passport.authenticate())
-        .get(app.api.announcement.get)
-        .post(app.api.announcement.save)
+        .get(csrfProtection, app.api.announcement.get)
+        .post(csrfProtection, app.api.announcement.save)
 
     app.route('/announcements/:id')
         .get(app.api.announcement.getById)
