@@ -3,13 +3,15 @@ import axios from 'axios';
 import './Login.css';
 import { baseApiUrl } from '../../global'
 
-class Login extends React.Component {
+class Cadastro extends React.Component {
     constructor(props) {
         super(props);
         this.stateInicial = {
             visible: false,
+            name: '',
             email: '',
-            password: ''
+            password: '',
+            confirmPassword: '',
         };
         this.state = this.stateInicial;
         this.showForm = this.showForm.bind(this);
@@ -24,12 +26,14 @@ class Login extends React.Component {
     mySubmitHandler(event) {
         event.preventDefault();
         const data = {
+            "name": event.target.name.value,
             "email": event.target.email.value,
-            "password": event.target.password.value
+            "password": event.target.password.value,
+            "confirmPassword": event.target.confirmPassword.value,
         }
 
         // falta consertar
-        axios.post(`${baseApiUrl}/signin`, data)
+        axios.post('${baseApiUrl}/signup', data)
             .then(response => console.log(response.data.token))
             .catch((err) => console.log(err))
 
@@ -47,9 +51,22 @@ class Login extends React.Component {
         return (
             <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
                 <div class="col-md-5 p-lg-5 mx-auto ">
-                    <h1 class="display-4 font-weight-normal">Login</h1>
+                    <h1 class="display-4 font-weight-normal">Cadastro</h1>
                     <div className="form-login">
                         <form className="needs-validation" novalidate onSubmit={this.mySubmitHandler}>
+                            <div class="row">
+                                <label for="name">Nome</label>
+                                <input 
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    onChange={this.myChangeHandler}
+                                    placeholder="Fulano da Silva"
+                                    required />
+                                <div class="invalid-feedback">
+                                    Nome inválido.
+                                </div>
+                            </div>
                             <div class="row">
                                 <label for="email">E-mail</label>
                                 <input
@@ -77,15 +94,28 @@ class Login extends React.Component {
                                     Senha inválida.
                                 </div>
                             </div>
+                            <div className="row">
+                                <label for="confirmPassword">Confirmar senha</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    onChange={this.myChangeHandler}
+                                    required />
+                                <div class="invalid-feedback">
+                                    Senha inválida.
+                                </div>
+                            </div>
                             <div className="row botao">
                                 <button
                                     class="btn btn-success btn-lg btn-block bg-success"
                                     type="submit">
-                                    Login
+                                    Cadastre-se!
                                 </button>
                             </div>
                         </form>
-                    <a href="/cadastro">Não tem uma conta? Cadastre-se aqui</a>
+                    <a href="">Já tem uma conta? Faça Login!</a>
                     </div>
                 </div>
             </div>
@@ -93,4 +123,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Cadastro;

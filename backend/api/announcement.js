@@ -1,4 +1,4 @@
-const queries = require('./queries')
+//const queries = require('./queries')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
@@ -26,6 +26,7 @@ module.exports = app => {
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
+            console.log('oi')
             app.db('announcements')
                 .insert(announcement)
                 .then(_ => res.status(204).send())
@@ -66,12 +67,13 @@ module.exports = app => {
         }
     
         const getByCategory = async (req, res) => {
-            const categoryId = req.params.id
-            const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
-            const ids = categories.rows.map(c => c.id)
+            //const categoryId = req.params.id
+            //const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
+            //const ids = categories.rows.map(c => c.id)
     
             app.db('announcements')
-                .whereIn('categoryId', ids)
+                //.whereIn('categoryId', ids)
+                .where({ categoryId: req.params.id })
                 .orderBy('announcements.id', 'desc')
                 .then(announcements => res.json(announcements))
                 .catch(err => res.status(500).send(err))
