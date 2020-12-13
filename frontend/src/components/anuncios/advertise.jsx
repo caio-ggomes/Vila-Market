@@ -143,7 +143,7 @@ class AdvertiseForm extends React.Component {
                             <div>
                                 <h4 className="mb-3">Cadastro de Produto</h4>
                                 <form className="needs-validation"  onSubmit={this.mySubmitHandler} autoComplete = "off">
-                                    
+                                    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
                                     <div className="row">
                                         <div className="col-md-8 mb-3">
                                             <label htmlFor="product">Produto</label>

@@ -1,4 +1,5 @@
 var helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
 function getDirectives () {
     const self = "'self'"
@@ -40,6 +41,8 @@ function getDirectives () {
   }
 
 module.exports = app => {
+
+    app.use(cookieParser())
 
     app.use(helmet.contentSecurityPolicy({
         directives: getDirectives()
