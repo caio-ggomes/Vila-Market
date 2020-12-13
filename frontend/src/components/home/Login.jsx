@@ -30,7 +30,7 @@ class Login extends React.Component {
 
         // falta consertar
         axios.post(`${baseApiUrl}/signin`, data)
-            .then(response => console.log(response))
+            .then(response => console.log(response.data.token))
             .catch((err) => console.log(err))
 
         this.setState(this.stateInicial)

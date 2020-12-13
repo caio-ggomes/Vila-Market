@@ -31,7 +31,7 @@ class Search extends Component {
         const url = `${baseApiUrl}/categories/${categoryId}/announcements`
         axios.get(url).then(res =>{
             this.list[parseInt(categoryId)] = res.data
-            
+                       
         })
     }
 
@@ -52,7 +52,8 @@ class Search extends Component {
             return (
                 <div>
                     <div className="item-separator"></div>
-                    < Item imageUrl={item.imageUrl} name={item.name} preco={item.preco} anunciante={item.anunciante} telefone={item.telefone} description={item.description}/>
+                    < Item id={item.id} imageUrl={item.imageUrl} name={item.name} preco={item.preco} anunciante={item.anunciante} telefone={item.telefone} description={item.description} latitude={item.latitude} longitude = {item.longitude}/>
+                        
                     <div className="item-separator"></div>
                 </div>
             )

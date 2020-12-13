@@ -1,17 +1,23 @@
 import './item.css'
 import React from 'react';
+//import MapContainer from './map'
+import Mapa from './map'
+
 
 class Item extends React.Component {
     
     constructor(props) {
         super(props);
         this.state = {
+            id: props.id,
             imageUrl: props.imageUrl,
             anunciante: props.anunciante,
             description: props.description,
             name: props.name,
             preco: props.preco,
             telefone: props.telefone,
+            latitude:props.latitude,
+            longitude:props.longitude,
             /*
             produto: props.produto,
             valor: props.valor,
@@ -25,6 +31,7 @@ class Item extends React.Component {
     }
 
     extend() {
+
         this.setState({ampliado: !this.state.ampliado});
     }
 
@@ -52,9 +59,20 @@ class Item extends React.Component {
                         <div class="col-md-6 mb-3">
                             <p>Telefone: {this.state.telefone}</p>
                         </div>
+                        <br></br>
+                        <br></br>
+                                                                        
+                                                      
+                        
+                        
                     </div>}
                 </div>
+                {this.state.ampliado &&
+                <div className="quadrada">                                                  
+                    <Mapa latitude = {this.state.latitude} longitude = {this.state.longitude} />                                     
+                </div>}
             </div>
+            
 
         );
     }
