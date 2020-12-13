@@ -12,7 +12,7 @@ export default props =>
             </div>            
             <Dropdown>
                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                    Dropdown Button
+                    Acesse aqui!
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
