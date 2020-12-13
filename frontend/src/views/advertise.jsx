@@ -72,7 +72,6 @@ class AdvertiseForm extends React.Component {
                             <div>
                                 <h4 class="mb-3">Cadastro de Produto</h4>
                                 <form class="needs-validation" novalidate onSubmit={this.mySubmitHandler}>
-                                    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
                                     <div class="row">
                                         <div class="col-md-8 mb-3">
                                             <label for="product">Produto</label>

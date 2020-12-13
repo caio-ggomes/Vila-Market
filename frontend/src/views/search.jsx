@@ -30,8 +30,7 @@ class Search extends Component {
     getAnnouncements(categoryId){
         const url = `${baseApiUrl}/categories/${categoryId}/announcements`
         axios.get(url).then(res =>{
-            this.list[parseInt(categoryId)] = res.data
-            
+            this.list[parseInt(categoryId)] = res.data;
         })
     }
 

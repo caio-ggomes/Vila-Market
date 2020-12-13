@@ -28,7 +28,7 @@ module.exports = app => {
             app.db('announcements')
                 .insert(announcement)
                 .then(_ => res.status(204).send())
-                .catch(err => res.status(500).send(err))
+                .catch(err => {res.status(500).send(err); console.log(err);})
         }
     }
         const remove = async (req, res) => {
@@ -53,7 +53,6 @@ module.exports = app => {
             app.db('announcements')
             .then(announcements => {
                 res.json(announcements)
-                res.send({csrfToken: req.csrfToken()})
             })
             .catch(err => res.status(500).send(err))
             
@@ -68,12 +67,12 @@ module.exports = app => {
         }
     
         const getByCategory = async (req, res) => {
-            const categoryId = req.params.id
-            const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
-            const ids = categories.rows.map(c => c.id)
-    
+            //const categoryId = req.params.id
+            //const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
+            //const ids = categories.rows.map(c => c.id)
             app.db('announcements')
-                .whereIn('categoryId', ids)
+            //    .whereIn('categoryId', ids)
+                .where({ categoryId: req.params.id })
                 .orderBy('announcements.id', 'desc')
                 .then(announcements => res.json(announcements))
                 .catch(err => res.status(500).send(err))
