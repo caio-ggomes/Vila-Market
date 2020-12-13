@@ -1,10 +1,13 @@
-import React,{Component} from 'react';
+import React,{useState, useEffect, useContext,Component} from 'react';
 import './search.css'
 
 import Item from './item'
 import Categoria from './categoria'
 import axios from 'axios';
 import { baseApiUrl} from '../../global'
+
+import api from '../../services/api';
+import { Context } from '../Context/AuthContext';
 
 class Search extends Component {
     
@@ -29,7 +32,7 @@ class Search extends Component {
     
     getAnnouncements(categoryId){
         const url = `${baseApiUrl}/categories/${categoryId}/announcements`
-        axios.get(url).then(res =>{
+        api.get(url).then(res =>{
             this.list[parseInt(categoryId)] = res.data
             
         })

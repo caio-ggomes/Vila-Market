@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Router } from 'react-router-dom'
 //import logo from './logo.svg';
 
 
@@ -11,12 +11,20 @@ import './App.css';
 import Header from '../components/template/Header'
 import Routes from './Routes'
 
+import history from '../services/history';
+import { AuthProvider } from '../context/AuthContext';
+
 function App() {
   return (
+
     <BrowserRouter>
       <div className="App">
         <Header />
-        <Routes />
+        <AuthProvider>
+          <Router history={history}>
+            <Routes />
+          </Router>
+        </AuthProvider>
       </div>
     </BrowserRouter>
   );

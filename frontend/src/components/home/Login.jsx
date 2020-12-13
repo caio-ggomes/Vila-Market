@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext }  from 'react';
 import axios from 'axios';
 import '../anuncios/advertise.css';
 import { baseApiUrl } from '../../global'
 
+import { Context } from '../../context/AuthContext';
+import { Component } from 'react';
+
+
+/*
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -21,10 +26,6 @@ class Login extends React.Component {
     showForm() {
         this.setState({ visible: !this.state.visible });
     }
-
-    /*onDrop(picture) {
-        this.setState({ product_photo: this.state.product_photo.concat(picture), });
-    }*/
 
     mySubmitHandler(event) {
         event.preventDefault();
@@ -106,3 +107,37 @@ class Login extends React.Component {
 }
 
 export default Login;
+*/
+
+export default function Login(){
+    const { authenticated, handleLogin, myChangeHandler } = useContext(Context);
+     
+
+    return (
+        <div style={{marginTop:"50px"}}>
+            <label for="email">E-mail</label>
+            <form onSubmit={(e)=>handleLogin(e)}>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email"
+                    //onChange={e=>myChangeHandler(e)} 
+                    placeholder="exemplo@gmail.com" 
+                    required />
+                <label for="password">Senha</label>
+                <input 
+                    type="password" 
+                    className="form-control" 
+                    id = "password" 
+                    name="password"
+                    
+                    //onChange={e=>myChangeHandler(e)}                                          
+                    required/>
+
+                <button type="submit">Entrar</button>
+            </form>
+        </div>   
+    
+    );
+  }
