@@ -1,5 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
+import { Link } from 'react-router-dom'
 //<!-- data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" aqui embaixo-->
 
 
@@ -15,9 +16,9 @@ export default props =>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="/search">Buscar Produto</Dropdown.Item>
-                    <Dropdown.Item href="/anuncio">Anuncie Já!</Dropdown.Item>
-                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                    <Dropdown.Item ><Link to="/search">Buscar Produto</Link></Dropdown.Item>
+                    <Dropdown.Item ><Link to="/anuncio">Anuncie Já!</Link></Dropdown.Item>
+                    <Dropdown.Item ><Link to="/login">Login</Link></Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>
