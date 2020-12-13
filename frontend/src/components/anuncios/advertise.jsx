@@ -2,13 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import ImageUploader from 'react-images-upload';
 import './advertise.css';
-import { baseApiUrl } from '../../global'
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-//import Geocode from "react-geocode"
-
-
+import { baseApiUrl } from '../../global'
 
 
 class AdvertiseForm extends React.Component {
