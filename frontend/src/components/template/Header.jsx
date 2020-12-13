@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Dropdown from 'react-bootstrap/Dropdown'
 //<!-- data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" aqui embaixo-->
 
 
@@ -8,9 +8,17 @@ export default props =>
         <div class="container d-flex justify-content-between">
             <div class="navbar-brand d-flex align-items-center">
                 <strong>Vila Market</strong>
-            </div>
-            <button class="navbar-toggler" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            </div>            
+            <Dropdown>
+                <Dropdown.Toggle variant="dark" id="dropdown-basic">
+                    Dropdown Button
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="/search">Buscar Produto</Dropdown.Item>
+                    <Dropdown.Item href="/anuncio">Anuncie Já!</Dropdown.Item>
+                    <Dropdown.Item href="/login">Login</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     </nav>

@@ -13,7 +13,7 @@ import Routes from './Routes'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter>    
       <div className="App">
         <Header />
         <Routes />

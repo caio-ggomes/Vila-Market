@@ -13,3 +13,7 @@ input.currency {
     position: relative;
     z-index: 3;
 }
+
+.posicao{
+    padding-top: 00px;
+}

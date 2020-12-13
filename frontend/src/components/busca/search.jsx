@@ -62,9 +62,9 @@ class Search extends Component {
     render() {
         return(            
             <div className="iza-container container">               
-                <div className="container container-categories-stripe mt-5 mb-4 category-section-margin-bottom">
-                    <div className="row">
-                        <div className="col-12 px-0 px-md-4">
+                
+                    
+                        <div >
                             <ul className="list-unstyled mb-0 list-inline category-stripe pb-3 category-stripe-margin-bottom">                                
                                 < Categoria value="1"  tipo="food" nome="Comida" url="images/food.png" click={this.handleClick} a href="#teste"/>
                                 < Categoria value="2" tipo="house" nome="Para a sua Casa" url="images/home.png" click={this.handleClick}/>  
@@ -74,8 +74,8 @@ class Search extends Component {
                                 < Categoria value="6" tipo="dressing" nome="Moda e Beleza" url="images/dressing.png" click={this.handleClick}/>                            
                             </ul>
                         </div>
-                    </div>
-                </div>                              
+                   
+                                          
                
 
                 {this.state.option === '1' && 
