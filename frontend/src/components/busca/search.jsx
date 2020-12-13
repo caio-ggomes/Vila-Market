@@ -4,7 +4,7 @@ import './search.css'
 import Item from './item'
 import Categoria from './categoria'
 import axios from 'axios';
-import { baseApiUrl} from '../global'
+import { baseApiUrl} from '../../global'
 
 class Search extends Component {
     
