@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import axios from 'axios';
 import { baseApiUrl } from '../global'
+//import './mapa.css'
 
 class MapContainer extends React.Component {
 
@@ -9,13 +10,11 @@ class MapContainer extends React.Component {
         super(props);
     
         this.state = {
-          latitude: 0.0, 
-          longitude: 0.0,
-          local: ''
-        }
-
+          latitude: -23.28, 
+          longitude: -45.8716233,
+          local: 'quadrado'
+        }        
         
-        this.local = ''
       }
 
       getAnnouncements(Id){
@@ -24,7 +23,7 @@ class MapContainer extends React.Component {
             this.anuncio = res.data
         })
         this.local = this.anuncio.name +"- R$: "+ String(this.anuncio.preco)
-        this.setState({latitude: this.anuncio.latitude, longitude: this.anuncio.longitude, local: this.local})
+        this.setState({latitude: this.anuncio.latitude, longitude: this.anuncio.longitude, local: this.state.local})
     }
 
       displayMarkers = () => {
@@ -41,8 +40,9 @@ class MapContainer extends React.Component {
         return (
     
           <Map
+            className="quadrada"
             google={this.props.google}
-            zoom={7}
+            zoom={15}
             initialCenter={{ lat: -23.2084514, lng: -45.8716233 }}
           >
         
@@ -57,6 +57,6 @@ class MapContainer extends React.Component {
 
 export default GoogleApiWrapper(
     (props) => ({
-      apiKey:  '1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com',
+      apiKey:  'AIzaSyD116QAn_lABifYKFDbFLdAYVCD5lw4VSs',
     }
     ))(MapContainer)

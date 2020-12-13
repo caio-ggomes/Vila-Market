@@ -6,7 +6,8 @@ import { baseApiUrl } from '../global'
 
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
-import Geocode from "react-geocode"
+//import Geocode from "react-geocode"
+import MapContainer from './map'
 
 
 
@@ -41,7 +42,7 @@ class AdvertiseForm extends React.Component {
         this.myChangeHandler = this.myChangeHandler.bind(this);
         this.mySubmitHandler = this.mySubmitHandler.bind(this);
         this.onBlurCep =this.onBlurCep.bind(this);
-        Geocode.setApiKey('1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com');
+        //Geocode.setApiKey('1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com');
         
     }
 
@@ -139,6 +140,7 @@ class AdvertiseForm extends React.Component {
                             {this.state.visible ? 'Fechar formulário' : 'Comece agora!'}
                         </div>
                         <br /><br />
+                        <MapContainer className="quadrado"/>
                         {this.state.visible &&
                             <div>
                                 <h4 class="mb-3">Cadastro de Produto</h4>

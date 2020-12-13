@@ -1,6 +1,8 @@
 import './item.css'
 import React from 'react';
 import MapContainer from './map'
+import Mapa from './mapa'
+
 
 class Item extends React.Component {
     
@@ -54,8 +56,9 @@ class Item extends React.Component {
                             <p>Telefone: {this.state.telefone}</p>
                         </div>
                         <div class="row">
-                        <div>
-                            <MapContainer />
+                        <div>                            
+                            <Mapa/>
+                            
                         </div>
                         </div>
                     </div>}

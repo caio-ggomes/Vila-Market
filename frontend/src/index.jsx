@@ -5,9 +5,10 @@ import AdvertiseForm from './views/advertise';
 import Search from './views/search';
 import * as serviceWorker from './serviceWorker';
 
+
 ReactDOM.render(
   <React.StrictMode>
-    <AdvertiseForm />
+    <AdvertiseForm />       
     <Search />
   </React.StrictMode>,
   document.getElementById('root')
