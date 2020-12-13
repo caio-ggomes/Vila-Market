@@ -19,6 +19,7 @@ export default props =>
                     <Dropdown.Item ><Link to="/search">Buscar Produto</Link></Dropdown.Item>
                     <Dropdown.Item ><Link to="/anuncio">Anuncie Já!</Link></Dropdown.Item>
                     <Dropdown.Item ><Link to="/login">Login</Link></Dropdown.Item>
+                    <Dropdown.Item ><Link to="/cadastro">Cadastro</Link></Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>

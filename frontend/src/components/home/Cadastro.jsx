@@ -1,6 +1,7 @@
 import React from 'react';
+import {Redirect} from 'react-router';
 import axios from 'axios';
-import './Login.css';
+import './Cadastro.css';
 import { baseApiUrl } from '../../global'
 
 class Cadastro extends React.Component {
@@ -12,6 +13,8 @@ class Cadastro extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
+            erro:false,
+            sucesso:false,
         };
         this.state = this.stateInicial;
         this.showForm = this.showForm.bind(this);
@@ -32,10 +35,22 @@ class Cadastro extends React.Component {
             "confirmPassword": event.target.confirmPassword.value,
         }
 
-        // falta consertar
-        axios.post('${baseApiUrl}/signup', data)
-            .then(response => console.log(response.data.token))
-            .catch((err) => console.log(err))
+        axios.post(`${baseApiUrl}/signup`, data)
+            .then(response => {
+                console.log(response.data.token);
+                alert("Usuário cadastrado com sucesso!");
+                event.target.name.value = "";
+                event.target.email.value = "";
+                event.target.password.value = "";
+                event.target.confirmPassword.value="";
+                this.setState({sucesso: true})
+                                
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("Houve um erro de cadastro, tente novamente.");
+                
+            })
 
         this.setState(this.stateInicial)
     }
@@ -46,10 +61,12 @@ class Cadastro extends React.Component {
         let val = event.target.value;
         this.setState({ [nam]: val });
     }
+    
 
     render() {
         return (
             <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
+                {this.state.sucesso && <Redirect to='/login'/>}
                 <div class="col-md-5 p-lg-5 mx-auto ">
                     <h1 class="display-4 font-weight-normal">Cadastro</h1>
                     <div className="form-login">
@@ -115,7 +132,7 @@ class Cadastro extends React.Component {
                                 </button>
                             </div>
                         </form>
-                    <a href="">Já tem uma conta? Faça Login!</a>
+                                       
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './Login.css';
+import {Redirect} from 'react-router';
 import { baseApiUrl } from '../../global'
 
 class Login extends React.Component {
@@ -9,7 +10,8 @@ class Login extends React.Component {
         this.stateInicial = {
             visible: false,
             email: '',
-            password: ''
+            password: '',
+            sucesso: false,
         };
         this.state = this.stateInicial;
         this.showForm = this.showForm.bind(this);
@@ -30,8 +32,18 @@ class Login extends React.Component {
 
         // falta consertar
         axios.post(`${baseApiUrl}/signin`, data)
-            .then(response => console.log(response.data.token))
-            .catch((err) => console.log(err))
+            .then(response => {
+                console.log(response.data.token);
+                alert("Sucesso");
+                this.setState({sucesso: true})
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("Email e/ou Senha Incorretos, tente novamente");
+                event.target.email.value = "";
+                event.target.password.value ="";
+
+            })
 
         this.setState(this.stateInicial)
     }
@@ -46,6 +58,7 @@ class Login extends React.Component {
     render() {
         return (
             <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
+                {this.state.sucesso && <Redirect to="/search"/>}
                 <div class="col-md-5 p-lg-5 mx-auto ">
                     <h1 class="display-4 font-weight-normal">Login</h1>
                     <div className="form-login">
