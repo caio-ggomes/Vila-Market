@@ -40,7 +40,7 @@ function getDirectives () {
   }
 
 module.exports = app => {
-    
+
     app.use(helmet.contentSecurityPolicy({
         directives: getDirectives()
     }))

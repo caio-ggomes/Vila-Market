@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 
 export default props =>
-    <nav class="navbar navbar-dark bg-dark shadow-sm fixed-top" id="header">
-        <div class="container d-flex justify-content-between">
-            <div class="navbar-brand d-flex align-items-center">
+    <nav className="navbar navbar-dark bg-dark shadow-sm fixed-top" id="header">
+        <div className="container d-flex justify-content-between">
+            <div className="navbar-brand d-flex align-items-center">
                 <strong>Vila Market</strong>
             </div>            
             <Dropdown>

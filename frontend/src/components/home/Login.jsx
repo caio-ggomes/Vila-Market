@@ -57,28 +57,28 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
+            <div className="position-relative overflow-hidden m-md-3 text-center bg-light">
                 {this.state.sucesso && <Redirect to="/search"/>}
-                <div class="col-md-5 p-lg-5 mx-auto ">
-                    <h1 class="display-4 font-weight-normal">Login</h1>
+                <div className="col-md-5 p-lg-5 mx-auto ">
+                    <h1 className="display-4 font-weight-normal">Login</h1>
                     <div className="form-login">
-                        <form className="needs-validation" novalidate onSubmit={this.mySubmitHandler}>
-                            <div class="row">
-                                <label for="email">E-mail</label>
+                        <form className="needs-validation" noValidate onSubmit={this.mySubmitHandler}>
+                            <div className="row">
+                                <label htmlFor="email">E-mail</label>
                                 <input
                                     type="email"
-                                    class="form-control"
+                                    className="form-control"
                                     id="email"
                                     name="email"
                                     onChange={this.myChangeHandler}
                                     placeholder="exemplo@gmail.com"
                                     required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Email inválido.
                                 </div>
                             </div>
                             <div className="row">
-                                <label for="password">Senha</label>
+                                <label htmlFor="password">Senha</label>
                                 <input
                                     type="password"
                                     className="form-control"
@@ -86,13 +86,13 @@ class Login extends React.Component {
                                     name="password"
                                     onChange={this.myChangeHandler}
                                     required />
-                                <div class="invalid-feedback">
+                                <div className="invalid-feedback">
                                     Senha inválida.
                                 </div>
                             </div>
                             <div className="row botao">
                                 <button
-                                    class="btn btn-success btn-lg btn-block bg-success"
+                                    className="btn btn-success btn-lg btn-block bg-success"
                                     type="submit">
                                     Login
                                 </button>

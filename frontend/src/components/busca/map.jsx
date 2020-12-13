@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker,fitBounds } from 'google-maps-react';
-import axios from 'axios';
-import { baseApiUrl } from '../../global'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+//import axios from 'axios';
+//import { baseApiUrl } from '../../global'
 import './mapa.css'
 
-class MapContainer extends React.Component {
+class MapContainer extends Component {
 
     constructor(props) {
         super(props);
