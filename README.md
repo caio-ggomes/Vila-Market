@@ -5,6 +5,8 @@
  # Vila Market
 
  O projeto consiste de um classificados para a vila militar contida na região do CTA.
+ Este repositório serve apenas para fazer testes locais, os repositórios utilizados pelo Heroku adaptados deste se encontram em
+https://github.com/renatocraf/projeto_ces26_front e https://github.com/renatocraf/projeto_ces26_back
 
 É uma aplicação React com servidor Express na nuvem (https://vila-market-front.herokuapp.com/) contendo:
 
@@ -40,5 +42,4 @@ Foram utilizadas as seguintes tecnologias para produção do projeto:
 
 ---
 
-Este repositório serve apenas para fazer testes locais, os repositórios utilizados pelo Heroku adaptados deste se encontram em
-https://github.com/renatocraf/projeto_ces26_front e https://github.com/renatocraf/projeto_ces26_back
+
