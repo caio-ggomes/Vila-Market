@@ -39,3 +39,6 @@ Foram utilizadas as seguintes tecnologias para produção do projeto:
 - Postgres
 
 ---
+
+Este repositório serve apenas para fazer testes locais, os repositórios utilizados pelo Heroku adaptados deste se encontram em
+https://github.com/renatocraf/projeto_ces26_front e https://github.com/renatocraf/projeto_ces26_back
