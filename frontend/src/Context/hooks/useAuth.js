@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { baseApiUrl } from '../../global';
+import axios from 'axios';
 
 import api from '../../api';
 import history from '../../main/history';
@@ -13,6 +15,7 @@ export default function useAuth() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [sucessCad, setSucessCad] = useState(false);
   const [google, setGoogle] = useState(false);
+  const [aux, setAux] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -26,20 +29,27 @@ export default function useAuth() {
   }, []);
  
   async function handleLogin() {
-    var userData
+    
     const data = {
       "email":email,
       "password": password
     }
-    api.post('\signin',data)
-    .then( response=>{
-        userData = response.data
-        localStorage.setItem('token', JSON.stringify(userData.token));
-        api.defaults.headers.Authorization = `Bearer ${userData.token}`;
+    var userTudo = await api.post('\signin',data)
+    console.log(userTudo)
+    var userData = userTudo.data
+    console.log(userData)
+    if(userData){
+      localStorage.setItem('token', JSON.stringify(userData.token));
+      api.defaults.headers.Authorization = `Bearer ${userData.token}`;
+      //setSucess(true)
+      setAuthenticated(true)
+      
+    }
+    else{
+      alert("Senha e/ou email incorretos!")
+    }
 
-    } )
-    setSucess(true);
-    setAuthenticated(true);
+      
   }
 
   function handleCadastro(){
@@ -53,28 +63,49 @@ export default function useAuth() {
     api.post('/signup', data)
     .then( response=>{
         console.log(response)
-        
+    
         setSucessCad(true)
     } )
   
   
   }
-  function handleLoginGoogle(){
-   
-    const token = password;
 
-    localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    setSucess(true);
-    setAuthenticated(true);
-    setGoogle(true);
+  
+  const responseGoogle = (response) => {
+    var email = String(response.profileObj.email)
+    var token = response.tokenId
 
+    handleLoginGoogle(email, token)
   }
 
+  async function handleLoginGoogle(email, token){
+
+    var Data = await api.get(`/users/${email}`)
+    var userData = Data.data;
+    console.log(userData)
+
+    if(userData){
+      localStorage.setItem('token', JSON.stringify(token));
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+      //setSucess(true);
+      setAuthenticated(true);
+      //setAux(false)
+      //history.push('/anuncio');
+      }
+    else{
+      alert("Email não cadastrado!")
+    }
+  }
+    
+    
+    
+    
+  
 
 
 
-  function handleLogout() {
+  
+  const handleLogout = ()=>{
     setAuthenticated(false);
     localStorage.removeItem('token');
     api.defaults.headers.Authorization = undefined;
@@ -82,8 +113,8 @@ export default function useAuth() {
     setSucess(false)
   }
   
-  return { authenticated, loading, sucess, sucessCad,google, setSucessCad, handleLogin, handleLogout, setEmail, 
-            setPassword, setUserName, setConfirmPassword, handleCadastro, handleLoginGoogle };
+  return { authenticated, loading, sucess, sucessCad,google, aux, setSucessCad, handleLogin, handleLogout, setEmail, 
+            setPassword, setUserName, setConfirmPassword, handleCadastro, responseGoogle };
 
 
 

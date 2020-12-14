@@ -10,35 +10,11 @@ import './Login.css'
 
 
 export default function Login() {
-  const { sucess,sucessCad, setSucessCad, handleLogin, setEmail, setPassword, handleLoginGoogle } = useContext(Context);
+  const { sucess,sucessCad, setSucessCad, aux, handleLogin, setEmail, setPassword, responseGoogle } = useContext(Context);
   
-  var aux = false;
-
-
-
-  const responseGoogle = (response) => {
-    
-    setPassword(response.tokenId)
-    
-    
-    api.get(`/users/${String(response.profileObj.email)}`)
-    .then(res=>{
-        console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        console.log(res.data)
-        if(res.data){
-            ;
-            handleLoginGoogle()}
-        else{
-            aux = true;
-        }})
-    
-
-  }
-  
-
 
     return <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
-            {sucess && <Redirect to="/anuncio"/>}
+            
             {setSucessCad(false)}
             {console.log(sucessCad)}
                 <div class="col-md-5 p-lg-5 mx-auto ">
@@ -52,7 +28,7 @@ export default function Login() {
                                     class="form-control"
                                     id="email"
                                     name="email"
-                                    onChange={e => setEmail(e.target.value)}
+                                    onBlur={e => setEmail(e.target.value)}
                                     placeholder="exemplo@gmail.com"
                                     required />
                                 <div class="invalid-feedback">
@@ -66,7 +42,7 @@ export default function Login() {
                                     className="form-control"
                                     id="password"
                                     name="password"
-                                    onChange={e => setPassword(e.target.value)}
+                                    onBlur={e => setPassword(e.target.value)}
                                     required />
                                 <div class="invalid-feedback">
                                     Email inválido.
@@ -83,6 +59,7 @@ export default function Login() {
                                     </div>
                                     <br></br>
                                 <div className="row botaoGoogle">
+                                    <div >
                                 <GoogleLogin
                                     clientId="1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com"
                                     
@@ -91,7 +68,7 @@ export default function Login() {
                                     onFailure={responseGoogle}
                                     cookiePolicy={'single_host_origin'}
                                 />
-                            </div>
+                            </div></div>
                             
                         </form>
                     <a >Não tem uma conta?</a><a> <Link to="/cadastro">Cadastre-se aqui</Link></a>

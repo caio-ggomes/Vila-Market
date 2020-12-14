@@ -11,7 +11,7 @@ import { Context } from '../Context/AuthContext';
 
 
 
-function CustomRoute({ isPrivate, ...rest }) {
+function CustomRoute({ isPrivate, isLogin, ...rest }) {
   const { loading, authenticated } = useContext(Context);
 
   if (loading) {
@@ -22,6 +22,10 @@ function CustomRoute({ isPrivate, ...rest }) {
     return <Redirect to="/login" />
   }
 
+  if (isLogin && authenticated) {
+    return <Redirect to="/anuncio" />
+  }
+
   return <Route {...rest} />;
 }
 
@@ -29,8 +33,8 @@ export default function Routes() {
   /* COLOCAR REDIRECT PRO '*' E PRO CADASTRO*/ 
   return (
     <Switch>
-        <CustomRoute exact path='/' component = {Login}/>
-        <CustomRoute exact path='/login' component = {Login}/>
+        <CustomRoute isLogin exact path='/' component = {Login}/>
+        <CustomRoute isLogin exact path='/login' component = {Login}/>
         <CustomRoute exact path='/search' component = {Search}/>
         <CustomRoute isPrivate exact path='/anuncio' component = {AdvertiseForm}/>
         <CustomRoute exact path='/cadastro' component = {Cadastro}/>
