@@ -6,7 +6,7 @@
 
  O projeto consiste de um classificados para a vila militar contida na região do CTA.
 
-É uma aplicação React com servidor Express na nuvem (Link:XXXXXXX) contendo:
+É uma aplicação React com servidor Express na nuvem (https://vila-market.herokuapp.com/) contendo:
 
 - Um formulário de cadastro para o usuário.
 - um formulário de login, com possibilidade de autenticação local ou via serviços do Google
