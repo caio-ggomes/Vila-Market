@@ -12,6 +12,7 @@ export default function useAuth() {
   const [userName, setUserName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [sucessCad, setSucessCad] = useState(false);
+  const [google, setGoogle] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -24,14 +25,12 @@ export default function useAuth() {
     setLoading(false);
   }, []);
  
-  
   async function handleLogin() {
     var userData
     const data = {
       "email":email,
       "password": password
     }
-    
     api.post('\signin',data)
     .then( response=>{
         userData = response.data
@@ -40,11 +39,7 @@ export default function useAuth() {
 
     } )
     setSucess(true);
-    
-    
     setAuthenticated(true);
-  
-
   }
 
   function handleCadastro(){
@@ -64,6 +59,19 @@ export default function useAuth() {
   
   
   }
+  function handleLoginGoogle(){
+   
+    const token = password;
+
+    localStorage.setItem('token', JSON.stringify(token));
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+    setSucess(true);
+    setAuthenticated(true);
+    setGoogle(true);
+
+  }
+
+
 
 
   function handleLogout() {
@@ -74,8 +82,8 @@ export default function useAuth() {
     setSucess(false)
   }
   
-  return { authenticated, loading, sucess, sucessCad, setSucessCad, handleLogin, handleLogout, setEmail, 
-            setPassword, setUserName, setConfirmPassword, handleCadastro };
+  return { authenticated, loading, sucess, sucessCad,google, setSucessCad, handleLogin, handleLogout, setEmail, 
+            setPassword, setUserName, setConfirmPassword, handleCadastro, handleLoginGoogle };
 
 
 

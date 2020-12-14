@@ -1,13 +1,40 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {Redirect} from "react-router";
 import { Link } from 'react-router-dom'
 
+import GoogleLogin from 'react-google-login';
+import api from '../../api';
+
 import { Context } from '../../Context/AuthContext';
+import './Login.css'
 
 
 export default function Login() {
-  const { authenticated, sucess,sucessCad, setSucessCad, handleLogin, setEmail, setPassword } = useContext(Context);
- 
+  const { sucess,sucessCad, setSucessCad, handleLogin, setEmail, setPassword, handleLoginGoogle } = useContext(Context);
+  
+  var aux = false;
+
+
+
+  const responseGoogle = (response) => {
+    
+    setPassword(response.tokenId)
+    
+    
+    api.get(`/users/${String(response.profileObj.email)}`)
+    .then(res=>{
+        console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHH")
+        console.log(res.data)
+        if(res.data){
+            ;
+            handleLoginGoogle()}
+        else{
+            aux = true;
+        }})
+    
+
+  }
+  
 
 
     return <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
@@ -53,9 +80,23 @@ export default function Login() {
                                     onClick={handleLogin}>
                                     Login
                                     </button>
+                                    </div>
+                                    <br></br>
+                                <div className="row botaoGoogle">
+                                <GoogleLogin
+                                    clientId="1018672477709-66ruqslkhumtbsotal1psldvefohhhi1.apps.googleusercontent.com"
+                                    
+                                    buttonText="Login"
+                                    onSuccess={responseGoogle}
+                                    onFailure={responseGoogle}
+                                    cookiePolicy={'single_host_origin'}
+                                />
                             </div>
+                            
                         </form>
                     <a >Não tem uma conta?</a><a> <Link to="/cadastro">Cadastre-se aqui</Link></a>
+                    <br></br>
+                    {aux && <p className="Sem_cadastro">Email não cadastro!</p>}
                     </div>
                 </div>
             </div>
