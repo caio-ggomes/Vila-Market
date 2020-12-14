@@ -6,6 +6,7 @@
     "@react-google-maps/api": "^2.0.1",
     "concurrently": "^3.5.0",
     "google-maps-react": "^2.0.6",
+    "helmet": "^4.2.0",
     "knex": "^0.21.13",
     "react-bootstrap": "^1.4.0",
     "react-phone-input-2": "^2.13.9",

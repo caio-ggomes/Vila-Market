@@ -1,5 +1,5 @@
-//const queries = require('./queries')
-const csrfProtection = require('../config/csrf')
+// //const queries = require('./queries')
+// const csrfProtection = require('../config/csrf')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
@@ -27,7 +27,6 @@ module.exports = app => {
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
         } else {
-            console.log('oi')
             app.db('announcements')
                 .insert(announcement)
                 .then(_ => res.status(204).send())
