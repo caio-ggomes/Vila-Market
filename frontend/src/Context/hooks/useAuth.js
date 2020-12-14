@@ -9,6 +9,9 @@ export default function useAuth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [sucess, setSucess] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [sucessCad, setSucessCad] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,8 +31,7 @@ export default function useAuth() {
       "email":email,
       "password": password
     }
-    console.log("777777777777777777777777777777")
-    console.log(data)
+    
     api.post('\signin',data)
     .then( response=>{
         userData = response.data
@@ -45,6 +47,24 @@ export default function useAuth() {
 
   }
 
+  function handleCadastro(){
+    const data = {
+      "email":email,
+      "password": password,
+      "name": userName,
+      "confirmPassword": confirmPassword
+    }
+
+    api.post('/signup', data)
+    .then( response=>{
+        console.log(response)
+        
+        setSucessCad(true)
+    } )
+  
+  
+  }
+
 
   function handleLogout() {
     setAuthenticated(false);
@@ -54,7 +74,8 @@ export default function useAuth() {
     setSucess(false)
   }
   
-  return { authenticated, loading, sucess, handleLogin, handleLogout, setEmail, setPassword, };
+  return { authenticated, loading, sucess, sucessCad, setSucessCad, handleLogin, handleLogout, setEmail, 
+            setPassword, setUserName, setConfirmPassword, handleCadastro };
 
 
 

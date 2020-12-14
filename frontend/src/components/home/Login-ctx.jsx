@@ -1,16 +1,19 @@
 import React, { useContext, useState } from 'react';
 import {Redirect} from "react-router";
+import { Link } from 'react-router-dom'
 
 import { Context } from '../../Context/AuthContext';
 
 
 export default function Login() {
-  const { authenticated, sucess, handleLogin, setEmail, setPassword } = useContext(Context);
+  const { authenticated, sucess,sucessCad, setSucessCad, handleLogin, setEmail, setPassword } = useContext(Context);
  
 
 
     return <div class="position-relative overflow-hidden m-md-3 text-center bg-light">
             {sucess && <Redirect to="/anuncio"/>}
+            {setSucessCad(false)}
+            {console.log(sucessCad)}
                 <div class="col-md-5 p-lg-5 mx-auto ">
                     <h1 class="display-4 font-weight-normal">Login</h1>
                     <div className="form-login">
@@ -52,7 +55,7 @@ export default function Login() {
                                     </button>
                             </div>
                         </form>
-                    <a href="#">Não tem uma conta? Cadastre-se aqui</a>
+                    <a >Não tem uma conta?</a><a> <Link to="/cadastro">Cadastre-se aqui</Link></a>
                     </div>
                 </div>
             </div>

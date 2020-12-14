@@ -6,11 +6,32 @@ const Context = createContext();
 
 function AuthProvider({ children }) {
   const {
-    authenticated, loading, sucess, handleLogin, handleLogout,  setEmail, setPassword, 
+    authenticated,
+    loading, sucess,
+    sucessCad,
+    handleLogin, 
+    handleLogout, 
+    setEmail, 
+    setPassword, 
+    setUserName, 
+    setConfirmPassword,
+    setSucessCad, 
+    handleCadastro  
   } = useAuth();
 
   return (
-    <Context.Provider value={{  authenticated, loading, sucess, handleLogin, handleLogout, setEmail, setPassword }}>
+    <Context.Provider value={{  authenticated, 
+                                loading, 
+                                sucess,
+                                sucessCad, 
+                                handleLogin, 
+                                handleLogout, 
+                                setEmail, 
+                                setPassword, 
+                                setUserName, 
+                                setConfirmPassword,
+                                setSucessCad,
+                                handleCadastro}}>
       {children}
     </Context.Provider>
   );
