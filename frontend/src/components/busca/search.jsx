@@ -67,7 +67,7 @@ class Search extends Component {
                     
                         <div >
                             <ul className="list-unstyled mb-0 list-inline category-stripe pb-3 category-stripe-margin-bottom">                                
-                                < Categoria value="1"  tipo="food" nome="Comida" url="images/food.png" click={this.handleClick} a href="#teste"/>
+                                < Categoria value="1"  tipo="food" nome="Comida" url="images/food.png" click={this.handleClick}/>
                                 < Categoria value="2" tipo="house" nome="Para a sua Casa" url="images/home.png" click={this.handleClick}/>  
                                 < Categoria value="3" tipo="electronics" nome="Eletrônicos" url="images/electronics.png" click={this.handleClick}/>  
                                 < Categoria value="4" tipo="service" nome="Serviços" url="images/service.png" click={this.handleClick}/>  

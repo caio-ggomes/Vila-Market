@@ -7,8 +7,7 @@ import AdvertiseForm from '../components/anuncios/advertise';
 import Search from '../components/busca/search';
 import Login from '../components/home/Login-ctx'
 import { Context } from '../Context/AuthContext';
-
-
+import Cadastro from '../components/home/Cadastro';
 
 function CustomRoute({ isPrivate, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -25,12 +24,14 @@ function CustomRoute({ isPrivate, ...rest }) {
 }
 
 export default function Routes() {
+  /* COLOCAR REDIRECT PRO '*' E PRO CADASTRO*/ 
   return (
     <Switch>
         <CustomRoute exact path='/' component = {Login}/>
         <CustomRoute exact path='/login' component = {Login}/>
         <CustomRoute exact path='/search' component = {Search}/>
         <CustomRoute isPrivate exact path='/anuncio' component = {AdvertiseForm}/>
+        
 
     </Switch>
   );

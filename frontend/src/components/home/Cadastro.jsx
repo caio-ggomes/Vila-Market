@@ -1,17 +1,20 @@
 import React from 'react';
-import axios from 'axios';
-import './Login.css';
 import {Redirect} from 'react-router';
+import axios from 'axios';
+import './Cadastro.css';
 import { baseApiUrl } from '../../global'
 
-class Login extends React.Component {
+class Cadastro extends React.Component {
     constructor(props) {
         super(props);
         this.stateInicial = {
             visible: false,
+            name: '',
             email: '',
             password: '',
-            sucesso: false,
+            confirmPassword: '',
+            erro:false,
+            sucesso:false,
         };
         this.state = this.stateInicial;
         this.showForm = this.showForm.bind(this);
@@ -26,23 +29,27 @@ class Login extends React.Component {
     mySubmitHandler(event) {
         event.preventDefault();
         const data = {
+            "name": event.target.name.value,
             "email": event.target.email.value,
-            "password": event.target.password.value
+            "password": event.target.password.value,
+            "confirmPassword": event.target.confirmPassword.value,
         }
 
-        // falta consertar
-        axios.post(`${baseApiUrl}/signin`, data)
+        axios.post(`${baseApiUrl}/signup`, data)
             .then(response => {
                 console.log(response.data.token);
-                alert("Sucesso");
+                alert("Usuário cadastrado com sucesso!");
+                event.target.name.value = "";
+                event.target.email.value = "";
+                event.target.password.value = "";
+                event.target.confirmPassword.value="";
                 this.setState({sucesso: true})
+                                
             })
             .catch((err) => {
                 console.log(err);
-                alert("Email e/ou Senha Incorretos, tente novamente");
-                event.target.email.value = "";
-                event.target.password.value ="";
-
+                alert("Houve um erro de cadastro, tente novamente.");
+                
             })
 
         this.setState(this.stateInicial)
@@ -54,15 +61,29 @@ class Login extends React.Component {
         let val = event.target.value;
         this.setState({ [nam]: val });
     }
+    
 
     render() {
         return (
             <div className="position-relative overflow-hidden m-md-3 text-center bg-light">
-                {this.state.sucesso && <Redirect to="/search"/>}
+                {this.state.sucesso && <Redirect to='/login'/>}
                 <div className="col-md-5 p-lg-5 mx-auto ">
-                    <h1 className="display-4 font-weight-normal">Login</h1>
+                    <h1 className="display-4 font-weight-normal">Cadastro</h1>
                     <div className="form-login">
                         <form className="needs-validation" noValidate onSubmit={this.mySubmitHandler}>
+                            <div className="row">
+                                <label htmlFor="name">Nome</label>
+                                <input 
+                                    className="form-control"
+                                    id="name"
+                                    name="name"
+                                    onChange={this.myChangeHandler}
+                                    placeholder="Fulano da Silva"
+                                    required />
+                                <div className="invalid-feedback">
+                                    Nome inválido.
+                                </div>
+                            </div>
                             <div className="row">
                                 <label htmlFor="email">E-mail</label>
                                 <input
@@ -90,15 +111,28 @@ class Login extends React.Component {
                                     Senha inválida.
                                 </div>
                             </div>
+                            <div className="row">
+                                <label htmlFor="confirmPassword">Confirmar senha</label>
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    onChange={this.myChangeHandler}
+                                    required />
+                                <div className="invalid-feedback">
+                                    Senha inválida.
+                                </div>
+                            </div>
                             <div className="row botao">
                                 <button
                                     className="btn btn-success btn-lg btn-block bg-success"
                                     type="submit">
-                                    Login
+                                    Cadastre-se!
                                 </button>
                             </div>
                         </form>
-                    <a href="/cadastro">Não tem uma conta? Cadastre-se aqui</a>
+                                       
                     </div>
                 </div>
             </div>
@@ -106,4 +140,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Cadastro;

@@ -1,4 +1,5 @@
-const queries = require('./queries')
+// //const queries = require('./queries')
+// const csrfProtection = require('../config/csrf')
 
 module.exports = app => {
     const { existsOrError } = app.api.validation
@@ -52,7 +53,10 @@ module.exports = app => {
         const limit = 10 // usado para paginação
         const get = async (req, res) => {
             app.db('announcements')
-            .then(announcements => res.json(announcements))
+            .then(announcements => res.json({
+                ...announcements,
+                csrfToken: req.csrfToken()
+            }))
             .catch(err => res.status(500).send(err))
             
         }
@@ -66,12 +70,13 @@ module.exports = app => {
         }
     
         const getByCategory = async (req, res) => {
-            const categoryId = req.params.id
-            const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
-            const ids = categories.rows.map(c => c.id)
+            //const categoryId = req.params.id
+            //const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
+            //const ids = categories.rows.map(c => c.id)
     
             app.db('announcements')
-                .whereIn('categoryId', ids)
+                //.whereIn('categoryId', ids)
+                .where({ categoryId: req.params.id })
                 .orderBy('announcements.id', 'desc')
                 .then(announcements => res.json(announcements))
                 .catch(err => res.status(500).send(err))

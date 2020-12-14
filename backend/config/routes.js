@@ -1,3 +1,5 @@
+const csrfProtection = require('csrf')
+
 module.exports = app => {
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
@@ -25,7 +27,7 @@ module.exports = app => {
     
     app.route('/announcements')
         //.all(app.config.passport.authenticate())
-        .get(app.api.announcement.get)
+        .get(csrfProtection, app.api.announcement.get)
         .post(app.api.announcement.save)
 
     app.route('/announcements/:id')

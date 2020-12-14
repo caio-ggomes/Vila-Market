@@ -1,4 +1,4 @@
-const { authSecret } = require('../.env')
+const { authSecret } = require('../env_file')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 
@@ -11,7 +11,7 @@ module.exports = app => {
         const user = await app.db('users')
             .where({ email: req.body.email })
             .first()
-
+        
         if (!user) return res.status(400).send('Usuário não encontrado!')
 
         const isMatch = bcrypt.compareSync(req.body.password, user.password)
@@ -45,6 +45,7 @@ module.exports = app => {
             }
         } catch(e) {
             // problema com o token
+            console.log(e)
         }
 
         res.send(false)

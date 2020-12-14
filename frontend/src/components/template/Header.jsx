@@ -16,7 +16,7 @@ export default function Header() {
             </div>            
             <Dropdown>
                 <Dropdown.Toggle variant="dark" id="dropdown-basic">
-                    Dropdown Button
+                    Acesse aqui!
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -24,7 +24,7 @@ export default function Header() {
                     <Dropdown.Item ><Link to="/anuncio">Anuncie Já!</Link></Dropdown.Item>
                     {!sucess && <Dropdown.Item ><Link to="/login">Login</Link></Dropdown.Item>}
                     {sucess && <Dropdown.Item onClick={handleLogout}><Link to="/login">Logout</Link></Dropdown.Item>}
-
+                        
                     
                     
                 </Dropdown.Menu>
